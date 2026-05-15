@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <title>Movie Index</title>
+</head>
+<body>
+  <button id="theme-toggle" aria-label="Toggle theme"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  <div id="header">
+    <input id="search" placeholder="Search...">
+    <div id="type-btns">
+      <button id="btn-movie" onclick="switchType('movie')">Movies</button>
+      <button id="btn-tv" onclick="switchType('tv')">Series</button>
+      <button id="btn-anime" onclick="switchType('anime')">Anime</button>
+      <button id="btn-filter" onclick="toggleFilters()" aria-label="Filters"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></button>
+    </div>
+  </div>
+  <div id="filter-modal">
+    <div id="filter-backdrop" onclick="toggleFilters()"></div>
+    <div id="filter-panel">
+      <div id="filter-head">
+        <span>Filters</span>
+        <button onclick="toggleFilters()" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></button>
+      </div>
+      <div class="filter-group">
+        <label>Sort by</label>
+        <select id="filter-sort">
+          <option value="popularity">Popularity</option>
+          <option value="rating">Rating</option>
+          <option value="date-desc">Release Date (newest)</option>
+          <option value="date-asc">Release Date (oldest)</option>
+          <option value="alpha-asc">Alphabetical A-Z</option>
+          <option value="alpha-desc">Alphabetical Z-A</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Genres</label>
+        <div id="filter-genres"></div>
+      </div>
+      <div class="filter-group">
+        <label>Year</label>
+        <div id="filter-years">
+          <input type="number" id="filter-year-from" placeholder="From">
+          <span>—</span>
+          <input type="number" id="filter-year-to" placeholder="To">
+        </div>
+      </div>
+      <div id="filter-actions">
+        <button id="filter-reset" onclick="resetFilters()">Reset</button>
+        <button id="filter-apply" onclick="applyFilters()">Apply</button>
+      </div>
+    </div>
+  </div>
+  <div id="grid"></div>
+  <button id="load-more" onclick="loadMore()" style="display:none">Load more</button>
+  <div id="player-overlay">
+    <div id="player-bar">
+      <span id="player-title"></span>
+      <div id="tv-controls" style="display:none">
+        <label>Season <select id="sel-season" onchange="loadEpisodes()"></select></label>
+        <label>Episode <select id="sel-episode"></select></label>
+        <button onclick="playEpisode()" aria-label="Play"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></button>
+      </div>
+      <button onclick="closePlayer()" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></button>
+    </div>
+    <iframe id="player-frame" allowfullscreen></iframe>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
