@@ -169,7 +169,7 @@ export default function App() {
     setCurrentItem(item)
     const type = currentType || item.media_type
     if (type === "movie") {
-      setPlayerSrc(`https://peachify.top/embed/movie/${item.id}`)
+      setPlayerSrc(`https://peachify.top/embed/movie/${item.id}?accent=ffffff&cast=hide`)
       setIsPlayerOpen(true)
     } else {
       setPlayerSrc("")
@@ -196,7 +196,7 @@ export default function App() {
 
   function playEpisode() {
     if (!currentSeason || !currentEpisode || !currentItem) return
-    setPlayerSrc(`https://peachify.top/embed/tv/${currentItem.id}/${currentSeason}/${currentEpisode}`)
+    setPlayerSrc(`https://peachify.top/embed/tv/${currentItem.id}/${currentSeason}/${currentEpisode}?accent=ffffff&cast=hide`)
   }
 
   function closePlayer() {
